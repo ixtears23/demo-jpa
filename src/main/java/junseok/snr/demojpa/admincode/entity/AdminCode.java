@@ -1,6 +1,5 @@
 package junseok.snr.demojpa.admincode.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,20 +8,18 @@ import java.time.LocalDateTime;
 
 @Getter @Setter
 @Entity
-@Table(name = "admin_code")
+@Table(uniqueConstraints = @UniqueConstraint(name = "uk1_admin_code", columnNames = {"parCodeId", "codeName"}))
 public class AdminCode {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "code_id")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "reg_dtm", nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
+    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
     private LocalDateTime regDtm;
-    @Column(name = "code_name", length = 50)
+    @Column(length = 50)
     private String codeName;
-    @Column(name = "code_value", length = 256)
+    @Column(length = 256)
     private String codeValue;
-    @Column(name = "par_code_id")
     private int parCodeId;
-    @Column(name = "display_order", length = 5)
+    @Column(length = 5)
     private int displayOrder;
 }
