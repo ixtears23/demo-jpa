@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Transactional
 @SpringBootTest
+@Transactional
 @Rollback(value = false)
-class AdminCodeJpaRepositoryTest {
+class AdminCodeRepositoryTest {
 
-    @Autowired AdminCodeJpaRepository adminCodeJpaRepository;
+    @Autowired AdminCodeRepository adminCodeRepository;
 
     @Test
     void testAdminCode() {
@@ -25,11 +25,12 @@ class AdminCodeJpaRepositoryTest {
         adminCode.setCodeValue("이용권 주문환불 타입");
         adminCode.setRegDtm(LocalDateTime.now());
 
-        final AdminCode savedAdminCode = adminCodeJpaRepository.save(adminCode);
-        final AdminCode findAdminCode = adminCodeJpaRepository.find(savedAdminCode.getId());
+        final AdminCode savedAdminCode = adminCodeRepository.save(adminCode);
+        final AdminCode findAdminCode = adminCodeRepository.findById(savedAdminCode.getId()).get();
 
+        assertThat(findAdminCode.getId()).isEqualTo(adminCode.getId());
         assertThat(findAdminCode.getCodeName()).isEqualTo(adminCode.getCodeName());
-        assertThat(findAdminCode.getCodeValue()).isEqualTo(adminCode.getCodeValue());
         assertThat(findAdminCode).isEqualTo(adminCode);
     }
+
 }
