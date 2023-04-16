@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "admin_code")
 public class AdminCode {
 
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "code_id")
     private int id;
     @Column(name = "reg_dtm", nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")

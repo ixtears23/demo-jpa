@@ -4,12 +4,16 @@ import junseok.snr.demojpa.admincode.entity.AdminCode;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Transactional
 @SpringBootTest
+@Rollback(value = false)
 class AdminCodeJpaRepositoryTest {
 
     @Autowired AdminCodeJpaRepository adminCodeJpaRepository;

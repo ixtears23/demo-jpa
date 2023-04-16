@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Transactional
 @Repository
 public class AdminCodeJpaRepository {
 
@@ -22,4 +21,5 @@ public class AdminCodeJpaRepository {
     public AdminCode find(Integer id) {
         return em.find(AdminCode.class, id);
     }
+
 }
